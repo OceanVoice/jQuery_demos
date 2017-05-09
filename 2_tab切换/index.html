@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		/*CSS Reset*/
+		 body,div,ul,li,ol,dl,dt,p,dd,img,input,a,span,h1,h2,h3,h4
+		 {padding:0; margin:0; border:0; list-style:none;}
+		 /*外部容器*/
+		.wrapper{
+			width:1000px;
+			height: 475px;
+			margin: 0 auto;
+			margin-top: 100px;
+		}
+		/*导航栏框架*/
+		.tab{
+			 border: 1px solid #ddd;
+			 border-bottom: 0;
+			 height: 36px;
+			 width: 320px;
+		}
+		/*内部条目*/
+		.tab li{
+			position: relative;
+			float: left;
+			width: 80px;
+			height:34px;
+			line-height: 34px;
+			text-align: center;
+			cursor: pointer; 
+			border-top: 4px solid #fff;
+		}
+		.tab span{
+
+		}
+		/*详情框架*/
+		.products{
+			 width: 1002px;border:1px solid #ddd;height: 476px;
+		}
+		/*详情内容*/
+		.products .main{float: left;display: none;}
+		/*活动对象*/
+		.products .main.selected{display: block;}
+		.tab li.active{border-color: red; border-bottom: 0;}
+
+	</style>
+	<script src="../jquery-1.11.1.min.js"></script>
+	<script >
+		$(function(){
+			// 鼠标移到导航栏某一个标题上时，触发事件
+            $(".tab li").mouseenter(function(){
+            	// 获取当前对象的序号
+                var $this = $(this),
+                    index = $this.index();
+                // 为当前选中的对象设置活动样式，并清除所有兄弟节点的活动样式
+                $this.addClass("active").siblings("li").removeClass("active");
+                $(".products div").eq(index).addClass("selected").siblings("div").removeClass("selected");
+            });
+        });
+	</script>
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="tab">
+			<li class="tab-item active">国际大牌</li>
+			<li class="tab-item">国妆名品</li>
+			<li class="tab-item">清洁用品</li>
+			<li class="tab-item">男士精品</li>
+		</ul>
+		<div class="products">
+			<div class="main selected"><a href="#"><img src="imgs/guojidapai.jpg" alt=""></a></div>
+			<div class="main"><a href="#"><img src="imgs/guozhuangmingpin.jpg" alt=""></a></div>
+			<div class="main"><a href="#"><img src="imgs/qingjieyongpin.jpg" alt=""></a></div>
+			<div class="main"><a href="#"><img src="imgs/nanshijingpin.jpg" alt=""></a></div>
+		</div>
+	</div>
+</body>
+</html>
